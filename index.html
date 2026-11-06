@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Apple PU College — Result Portal · Daily Test 18</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#daa112; --gold-soft:#eab42e; --gold-dim:#f0c04a;
+  --sage:#809276; --olive:#666e51; --grey:#768886;
+  --bg0:#061c1e; --bg1:#10383a;
+  --panel:rgba(12,44,46,.62); --panel2:rgba(10,38,40,.5);
+  --stroke:rgba(218,161,18,.26); --stroke2:rgba(128,146,118,.20);
+  --txt:#eaf1ed; --muted:#9db0ab;
+  --absent:#9aa9a5; --pending:#daa112;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#061c1e}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--txt);
+  background:radial-gradient(900px 560px at 82% -8%,rgba(218,161,18,.14),transparent 62%),
+    radial-gradient(760px 520px at 6% 14%,rgba(128,146,118,.12),transparent 58%),
+    linear-gradient(180deg,#123f41,var(--bg0));
+  min-height:100vh;background-attachment:fixed;padding:26px 16px 70px}
+.wrap{max-width:940px;margin:0 auto}
+.hero{position:relative;overflow:hidden;
+  background:linear-gradient(155deg,rgba(16,56,58,.86),rgba(10,38,40,.66));
+  border:1px solid var(--stroke);border-radius:22px;padding:34px 30px;margin-bottom:26px;
+  backdrop-filter:blur(14px);box-shadow:0 22px 54px rgba(0,0,0,.34)}
+.hero::after{content:"";position:absolute;right:-60px;top:-60px;width:230px;height:230px;
+  background:radial-gradient(circle,rgba(218,161,18,.22),transparent 68%)}
+.hero.centered{text-align:center}
+.eyebrow{font-size:.7rem;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);
+  font-weight:700;margin-bottom:12px}
+.eyebrow.eyebrow-btm{margin-bottom:0;margin-top:16px}
+.hitcounter{text-align:center;margin:22px 0 4px;font-family:'Inter';font-size:.68rem;
+  font-weight:400;letter-spacing:.4px;color:rgba(234,241,237,.4)}
+.hitcounter span{font-variant-numeric:tabular-nums;color:rgba(234,241,237,.62)}
+.hero h1{font-family:'Sora';font-weight:800;line-height:1.1;font-size:1.85rem;letter-spacing:-.3px;text-transform:uppercase}
+.hero .h-college{color:var(--gold)}
+.hero .h-academy{color:var(--txt);margin-top:2px}
+.hero .collab-mid{margin:8px 0 6px;color:var(--muted);font-size:.92rem;font-family:'Inter';font-weight:500;letter-spacing:.3px}
+.hero .loc{margin-top:10px;color:var(--sage);font-size:.9rem;font-weight:600;letter-spacing:.3px}
+.pill{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:4px 10px;border-radius:999px;background:rgba(218,161,18,.12);border:1px solid var(--stroke);color:var(--gold)}
+.card{background:var(--panel);border:1px solid var(--stroke2);border-radius:20px;padding:24px;
+  backdrop-filter:blur(16px);box-shadow:0 22px 54px rgba(0,0,0,.30)}
+.label{font-size:.74rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:9px}
+.searchrow{display:flex;gap:10px;margin-top:4px}
+.searchrow input{flex:1;background:rgba(6,28,30,.55);border:1px solid var(--stroke2);color:var(--txt);
+  border-radius:13px;padding:15px 16px;font-size:1.05rem;font-family:'Inter';outline:none;transition:.18s;letter-spacing:.5px}
+.searchrow input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(218,161,18,.20)}
+.searchrow input::placeholder{color:var(--muted);letter-spacing:normal}
+.gobtn{background:var(--gold);color:#0a2a2c;border:none;border-radius:13px;padding:0 24px;
+  font-weight:700;font-family:'Sora';font-size:.95rem;cursor:pointer;display:flex;align-items:center;gap:7px;transition:.18s}
+.gobtn:hover{background:var(--gold-soft);box-shadow:0 8px 24px rgba(218,161,18,.30)}
+.hint{font-size:.76rem;color:var(--muted);margin-top:11px}
+.result{margin-top:22px;display:none}
+.result.show{display:block;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.studenthead{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;
+  padding:2px 2px 20px;margin-bottom:6px;border-bottom:1px solid var(--stroke2);flex-wrap:wrap}
+.sname{font-family:'Sora';font-weight:800;font-size:1.5rem;letter-spacing:-.4px}
+.smeta{color:var(--muted);font-size:.84rem;margin-top:6px;line-height:1.6}
+.smeta span{color:var(--txt)}
+.countbadge{font-family:'Sora';font-weight:800;font-size:.78rem;letter-spacing:.5px;
+  padding:8px 15px;border-radius:12px;background:rgba(218,161,18,.12);border:1px solid var(--stroke);
+  color:var(--gold);white-space:nowrap}
+.testblock{margin-top:20px;background:var(--panel2);border:1px solid var(--stroke2);border-radius:16px;overflow:hidden}
+.tbhead{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 18px;
+  background:rgba(218,161,18,.07);border-bottom:1px solid var(--stroke2);flex-wrap:wrap}
+.tbtitle{font-family:'Sora';font-weight:700;font-size:1.02rem}
+.tbtitle .sec{color:var(--muted);font-weight:600;font-size:.82rem;margin-left:8px}
+.tbmeta{font-size:.74rem;color:var(--muted)}
+.obadge{font-family:'Sora';font-weight:700;font-size:.68rem;letter-spacing:.8px;padding:6px 12px;
+  border-radius:999px;text-transform:uppercase}
+.o-SCORED{background:var(--gold);color:#0a2a2c}
+.o-ABSENT{background:rgba(118,136,134,.18);color:#b6c5c1;border:1px solid rgba(118,136,134,.42)}
+.rankchip{font-family:'Sora';font-weight:800;font-size:.68rem;letter-spacing:.8px;padding:6px 12px;
+  border-radius:999px;text-transform:uppercase;background:rgba(128,146,118,.16);
+  border:1px solid var(--stroke2);color:var(--sage);white-space:nowrap}
+.badgegroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rankcell{color:var(--txt)}
+.o-PENDING{background:rgba(218,161,18,.14);color:var(--gold-dim);border:1px solid rgba(218,161,18,.38)}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+thead th{text-align:left;font-size:.68rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);
+  font-weight:700;padding:12px 16px 10px}
+thead th.num,tbody td.num{text-align:right}
+tbody td{padding:12px 16px;border-top:1px solid var(--stroke2)}
+tbody td.sub{font-weight:600}
+tbody td.mk{font-family:'Sora';font-weight:700}
+.mk.ab{color:var(--absent)}
+tfoot td{padding:13px 16px;border-top:2px solid var(--stroke);font-family:'Sora';font-weight:800}
+tfoot .num{text-align:right}
+tfoot .tot{color:var(--gold)}
+.notfound{display:none;margin-top:18px;text-align:center;padding:26px;border:1px dashed rgba(224,122,95,.42);
+  border-radius:16px;color:#e89277;font-weight:600}
+.notfound.show{display:block}
+.foot{text-align:center;color:var(--muted);font-size:.74rem;margin-top:28px;line-height:1.7}
+.foot b{color:var(--gold-dim)}
+@media(max-width:720px){
+  body{padding:18px 12px 48px}
+  .hero{padding:26px 20px}
+  .card{padding:18px}
+}
+@media(max-width:560px){
+  .hero h1{font-size:1.4rem}.hero .collab-mid{font-size:.85rem}.hero .loc{font-size:.82rem}
+  .sname{font-size:1.2rem}
+  .searchrow{flex-direction:column}
+  .searchrow input{width:100%}
+  .gobtn{width:100%;padding:14px 16px;justify-content:center}
+  table{font-size:.84rem}tbody td,thead th{padding-left:10px;padding-right:10px}
+  .tbhead{padding:12px 14px}tbody td,tfoot td{padding-left:12px;padding-right:12px}
+}
+@media(max-width:380px){
+  .hero h1{font-size:1.18rem}.hero .collab-mid{font-size:.8rem}
+  .eyebrow{letter-spacing:1.6px}
+  table{font-size:.78rem}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero centered">
+    <h1 class="h-college">THE APPLE P U COLLEGE</h1>
+    <div class="collab-mid">in collaboration with</div>
+    <h1 class="h-academy">ABHYAAS IIT-JEE / NEET ACADEMY</h1>
+    <div class="loc">Thattekere, Channapatna Town</div>
+    <div class="eyebrow eyebrow-btm">RESULT PORTAL · I PUC · DAILY TEST · SERIES 18 · 28 OCT 2026</div>
+  </div>
+  <div class="card">
+    <div class="label">Enter Register Number</div>
+    <div class="searchrow">
+      <input id="q" placeholder="e.g. AA26PUV01" autocomplete="off" spellcheck="false">
+      <button class="gobtn" id="go">View Results <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#0a2a2c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="hint">Enter your register number to see your Daily Test — Series 18 result.</div>
+    <div class="result" id="result"></div>
+    <div class="notfound" id="nf"></div>
+  </div>
+  <div class="hitcounter" id="hitcounter" aria-live="polite"><span id="hitcount">…</span> visits</div>
+</div>
+<script>
+const DATA = {"college": "THE APPLE P U COLLEGE", "collab": "ABHYAAS IIT-JEE/NEET ACADEMY", "students": {"MANISHA URS K S": {"name": "MANISHA URS K S", "regs": ["AA26PUT09"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT09", "subjects": [{"subject": "Physics", "mark": 13, "max": 15}, {"subject": "Chemistry", "mark": 13, "max": 15}, {"subject": "Mathematics", "mark": 6, "max": 10}], "total": 32, "overall": "SCORED", "rank": 1, "totalMax": 40}]}, "AINAN GHORI": {"name": "AINAN GHORI", "regs": ["AA26PUT02"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT02", "subjects": [{"subject": "Physics", "mark": 12, "max": 15}, {"subject": "Chemistry", "mark": 13, "max": 15}, {"subject": "Mathematics", "mark": 5, "max": 10}], "total": 30, "overall": "SCORED", "rank": 2, "totalMax": 40}]}, "SANATH GOWDA S": {"name": "SANATH GOWDA S", "regs": ["AA26PUT16"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT16", "subjects": [{"subject": "Physics", "mark": 12, "max": 15}, {"subject": "Chemistry", "mark": 11, "max": 15}, {"subject": "Mathematics", "mark": 3, "max": 10}], "total": 26, "overall": "SCORED", "rank": 3, "totalMax": 40}]}, "VISHNU GOWDA R": {"name": "VISHNU GOWDA R", "regs": ["AA26PUT20"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT20", "subjects": [{"subject": "Physics", "mark": 7, "max": 15}, {"subject": "Chemistry", "mark": 11, "max": 15}, {"subject": "Mathematics", "mark": 6, "max": 10}], "total": 24, "overall": "SCORED", "rank": 4, "totalMax": 40}]}, "JEEVAN K": {"name": "JEEVAN K", "regs": ["AA26PUT08"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT08", "subjects": [{"subject": "Physics", "mark": 9, "max": 15}, {"subject": "Chemistry", "mark": 8, "max": 15}, {"subject": "Mathematics", "mark": 5, "max": 10}], "total": 22, "overall": "SCORED", "rank": 5, "totalMax": 40}]}, "ADEEB KHAN GHORI": {"name": "ADEEB KHAN GHORI", "regs": ["AA26PUT01"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT01", "subjects": [{"subject": "Physics", "mark": 9, "max": 15}, {"subject": "Chemistry", "mark": 10, "max": 15}, {"subject": "Mathematics", "mark": 2, "max": 10}], "total": 21, "overall": "SCORED", "rank": 6, "totalMax": 40}]}, "DEEKSHITHA S": {"name": "DEEKSHITHA S", "regs": ["AA26PUT06"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT06", "subjects": [{"subject": "Physics", "mark": 5, "max": 15}, {"subject": "Chemistry", "mark": 8, "max": 15}, {"subject": "Mathematics", "mark": 6, "max": 10}], "total": 19, "overall": "SCORED", "rank": 7, "totalMax": 40}]}, "SYEDA YASEERA KHUNDMIRI": {"name": "SYEDA YASEERA KHUNDMIRI", "regs": ["AA26PUT17"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT17", "subjects": [{"subject": "Physics", "mark": 5, "max": 15}, {"subject": "Chemistry", "mark": 9, "max": 15}, {"subject": "Mathematics", "mark": 4, "max": 10}], "total": 18, "overall": "SCORED", "rank": 8, "totalMax": 40}]}, "YADU U": {"name": "YADU U", "regs": ["AA26PUT21"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT21", "subjects": [{"subject": "Physics", "mark": 8, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 3, "max": 10}], "total": 17, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "HRUTHIKA S M": {"name": "HRUTHIKA S M", "regs": ["AA26PUT07"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT07", "subjects": [{"subject": "Physics", "mark": 5, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 5, "max": 10}], "total": 16, "overall": "SCORED", "rank": 10, "totalMax": 40}]}, "UMAIR HAMZA": {"name": "UMAIR HAMZA", "regs": ["AA26PUT18"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT18", "subjects": [{"subject": "Physics", "mark": 4, "max": 15}, {"subject": "Chemistry", "mark": 8, "max": 15}, {"subject": "Mathematics", "mark": 4, "max": 10}], "total": 16, "overall": "SCORED", "rank": 10, "totalMax": 40}]}, "MOHAMMED ARSALAN SIDDIQI": {"name": "MOHAMMED ARSALAN SIDDIQI", "regs": ["AA26PUT10"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT10", "subjects": [{"subject": "Physics", "mark": 10, "max": 15}, {"subject": "Chemistry", "mark": 2, "max": 15}, {"subject": "Mathematics", "mark": 3, "max": 10}], "total": 15, "overall": "SCORED", "rank": 11, "totalMax": 40}]}, "MUSADIQ MEHDI": {"name": "MUSADIQ MEHDI", "regs": ["AA26PUT11"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT11", "subjects": [{"subject": "Physics", "mark": 7, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 2, "max": 10}], "total": 15, "overall": "SCORED", "rank": 11, "totalMax": 40}]}, "NOORAIN TAJ R": {"name": "NOORAIN TAJ R", "regs": ["AA26PUT13"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT13", "subjects": [{"subject": "Physics", "mark": 5, "max": 15}, {"subject": "Chemistry", "mark": 5, "max": 15}, {"subject": "Mathematics", "mark": 5, "max": 10}], "total": 15, "overall": "SCORED", "rank": 11, "totalMax": 40}]}, "AZHA TANZEEM": {"name": "AZHA TANZEEM", "regs": ["AA26PUT04"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT04", "subjects": [{"subject": "Physics", "mark": 5, "max": 15}, {"subject": "Chemistry", "mark": 3, "max": 15}, {"subject": "Mathematics", "mark": 4, "max": 10}], "total": 12, "overall": "SCORED", "rank": 12, "totalMax": 40}]}, "CHIRANTHAN K": {"name": "CHIRANTHAN K", "regs": ["AA26PUT05"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT05", "subjects": [{"subject": "Physics", "mark": 2, "max": 15}, {"subject": "Chemistry", "mark": 7, "max": 15}, {"subject": "Mathematics", "mark": 3, "max": 10}], "total": 12, "overall": "SCORED", "rank": 12, "totalMax": 40}]}, "PAVAN KUMAR G R": {"name": "PAVAN KUMAR G R", "regs": ["AA26PUT14"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT14", "subjects": [{"subject": "Physics", "mark": 4, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 2, "max": 10}], "total": 12, "overall": "SCORED", "rank": 12, "totalMax": 40}]}, "ANIYAH AQSA": {"name": "ANIYAH AQSA", "regs": ["AA26PUT03"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT03", "subjects": [{"subject": "Physics", "mark": 4, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 1, "max": 10}], "total": 11, "overall": "SCORED", "rank": 13, "totalMax": 40}]}, "NAGAPRIYA K": {"name": "NAGAPRIYA K", "regs": ["AA26PUT12"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT12", "subjects": [{"subject": "Physics", "mark": 3, "max": 15}, {"subject": "Chemistry", "mark": 4, "max": 15}, {"subject": "Mathematics", "mark": 4, "max": 10}], "total": 11, "overall": "SCORED", "rank": 13, "totalMax": 40}]}, "POORNESH GOWDA S P": {"name": "POORNESH GOWDA S P", "regs": ["AA26PUT15"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT15", "subjects": [{"subject": "Physics", "mark": 1, "max": 15}, {"subject": "Chemistry", "mark": 9, "max": 15}, {"subject": "Mathematics", "mark": 1, "max": 10}], "total": 11, "overall": "SCORED", "rank": 13, "totalMax": 40}]}, "VAISHNAVI": {"name": "VAISHNAVI", "regs": ["AA26PUT19"], "section": "TANTRAGNANA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "TANTRAGNANA", "date": "28/10/2026", "reg": "AA26PUT19", "subjects": [{"subject": "Physics", "mark": 2, "max": 15}, {"subject": "Chemistry", "mark": 6, "max": 15}, {"subject": "Mathematics", "mark": 2, "max": 10}], "total": 10, "overall": "SCORED", "rank": 14, "totalMax": 40}]}, "KOKILA V": {"name": "KOKILA V", "regs": ["AA26PUV11"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV11", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 10, "max": 10}, {"subject": "Biology", "mark": 20, "max": 20}], "total": 35, "overall": "SCORED", "rank": 1, "totalMax": 40}]}, "MEHEK KHAN": {"name": "MEHEK KHAN", "regs": ["AA26PUV15"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV15", "subjects": [{"subject": "Physics", "mark": 6, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 20, "max": 20}], "total": 33, "overall": "SCORED", "rank": 2, "totalMax": 40}]}, "DHEERAJ S": {"name": "DHEERAJ S", "regs": ["AA26PUV05"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV05", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 9, "max": 10}, {"subject": "Biology", "mark": 19, "max": 20}], "total": 32, "overall": "SCORED", "rank": 2, "totalMax": 40}]}, "PANCHAMI N": {"name": "PANCHAMI N", "regs": ["AA26PUV19"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV19", "subjects": [{"subject": "Physics", "mark": 6, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 19, "max": 20}], "total": 32, "overall": "SCORED", "rank": 2, "totalMax": 40}]}, "BINDHU SAGAR N K": {"name": "BINDHU SAGAR N K", "regs": ["AA26PUV02"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV02", "subjects": [{"subject": "Physics", "mark": 6, "max": 10}, {"subject": "Chemistry", "mark": 5, "max": 10}, {"subject": "Biology", "mark": 19, "max": 20}], "total": 30, "overall": "SCORED", "rank": 3, "totalMax": 40}]}, "GNANESH D M": {"name": "GNANESH D M", "regs": ["AA26PUV07"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV07", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 9, "max": 10}, {"subject": "Biology", "mark": 15, "max": 20}], "total": 29, "overall": "SCORED", "rank": 4, "totalMax": 40}]}, "HASHRITHA R K": {"name": "HASHRITHA R K", "regs": ["AA26PUV08"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV08", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 8, "max": 10}, {"subject": "Biology", "mark": 17, "max": 20}], "total": 29, "overall": "SCORED", "rank": 4, "totalMax": 40}]}, "MEGHANA C": {"name": "MEGHANA C", "regs": ["AA26PUV14"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV14", "subjects": [{"subject": "Physics", "mark": 3, "max": 10}, {"subject": "Chemistry", "mark": 6, "max": 10}, {"subject": "Biology", "mark": 20, "max": 20}], "total": 29, "overall": "SCORED", "rank": 4, "totalMax": 40}]}, "SHREEKALA B H": {"name": "SHREEKALA B H", "regs": ["AA26PUV22"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV22", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 9, "max": 10}, {"subject": "Biology", "mark": 15, "max": 20}], "total": 28, "overall": "SCORED", "rank": 5, "totalMax": 40}]}, "JANHAVI C": {"name": "JANHAVI C", "regs": ["AA26PUV09"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV09", "subjects": [{"subject": "Physics", "mark": 7, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 12, "max": 20}], "total": 26, "overall": "SCORED", "rank": 6, "totalMax": 40}]}, "MD HUSSAIN MEHDI": {"name": "MD HUSSAIN MEHDI", "regs": ["AA26PUV13"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV13", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 6, "max": 10}, {"subject": "Biology", "mark": 15, "max": 20}], "total": 26, "overall": "SCORED", "rank": 6, "totalMax": 40}]}, "MANOHAR GOWDA H M": {"name": "MANOHAR GOWDA H M", "regs": ["AA26PUV12"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV12", "subjects": [{"subject": "Physics", "mark": 7, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 11, "max": 20}], "total": 25, "overall": "SCORED", "rank": 7, "totalMax": 40}]}, "NAMYATHA G S": {"name": "NAMYATHA G S", "regs": ["AA26PUV17"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV17", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 1, "max": 10}, {"subject": "Biology", "mark": 19, "max": 20}], "total": 24, "overall": "SCORED", "rank": 8, "totalMax": 40}]}, "DEEKSHITHA R": {"name": "DEEKSHITHA R", "regs": ["AA26PUV04"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV04", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 4, "max": 10}, {"subject": "Biology", "mark": 14, "max": 20}], "total": 22, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "FARHAN KHAN": {"name": "FARHAN KHAN", "regs": ["AA26PUV06"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV06", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 4, "max": 10}, {"subject": "Biology", "mark": 13, "max": 20}], "total": 22, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "MOUNISH GOWDA S A": {"name": "MOUNISH GOWDA S A", "regs": ["AA26PUV16"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV16", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 10, "max": 20}], "total": 22, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "NEETHU G": {"name": "NEETHU G", "regs": ["AA26PUV18"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV18", "subjects": [{"subject": "Physics", "mark": 7, "max": 10}, {"subject": "Chemistry", "mark": 3, "max": 10}, {"subject": "Biology", "mark": 12, "max": 20}], "total": 22, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "SYEDA ZAHEDA RIFA": {"name": "SYEDA ZAHEDA RIFA", "regs": ["AA26PUV23"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV23", "subjects": [{"subject": "Physics", "mark": 3, "max": 10}, {"subject": "Chemistry", "mark": 4, "max": 10}, {"subject": "Biology", "mark": 15, "max": 20}], "total": 22, "overall": "SCORED", "rank": 9, "totalMax": 40}]}, "CHANDRAKALA B": {"name": "CHANDRAKALA B", "regs": ["AA26PUV03"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV03", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 5, "max": 10}, {"subject": "Biology", "mark": 11, "max": 20}], "total": 21, "overall": "SCORED", "rank": 10, "totalMax": 40}]}, "KHUSHI": {"name": "KHUSHI", "regs": ["AA26PUV10"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV10", "subjects": [{"subject": "Physics", "mark": 2, "max": 10}, {"subject": "Chemistry", "mark": 4, "max": 10}, {"subject": "Biology", "mark": 15, "max": 20}], "total": 21, "overall": "SCORED", "rank": 10, "totalMax": 40}]}, "VARSHINI.C.B": {"name": "VARSHINI.C.B", "regs": ["AA26PUV25"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV25", "subjects": [{"subject": "Physics", "mark": 4, "max": 10}, {"subject": "Chemistry", "mark": 6, "max": 10}, {"subject": "Biology", "mark": 11, "max": 20}], "total": 21, "overall": "SCORED", "rank": 10, "totalMax": 40}]}, "ROHAN": {"name": "ROHAN", "regs": ["AA26PUV20"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV20", "subjects": [{"subject": "Physics", "mark": 5, "max": 10}, {"subject": "Chemistry", "mark": 7, "max": 10}, {"subject": "Biology", "mark": 7, "max": 20}], "total": 19, "overall": "SCORED", "rank": 11, "totalMax": 40}]}, "ATHUFA THASEEN": {"name": "ATHUFA THASEEN", "regs": ["AA26PUV01"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV01", "subjects": [{"subject": "Physics", "mark": 1, "max": 10}, {"subject": "Chemistry", "mark": 4, "max": 10}, {"subject": "Biology", "mark": 13, "max": 20}], "total": 18, "overall": "SCORED", "rank": 12, "totalMax": 40}]}, "SYEDA ZAUFISHAN TASKEEN": {"name": "SYEDA ZAUFISHAN TASKEEN", "regs": ["AA26PUV24"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV24", "subjects": [{"subject": "Physics", "mark": 3, "max": 10}, {"subject": "Chemistry", "mark": 2, "max": 10}, {"subject": "Biology", "mark": 10, "max": 20}], "total": 15, "overall": "SCORED", "rank": 13, "totalMax": 40}]}, "SANA AFSAR": {"name": "SANA AFSAR", "regs": ["AA26PUV21"], "section": "VAIDYA", "className": "I PUC", "tests": [{"title": "DAILY TEST — SERIES 18", "section": "VAIDYA", "date": "28/10/2026", "reg": "AA26PUV21", "subjects": [{"subject": "Physics", "mark": "AB", "max": 10}, {"subject": "Chemistry", "mark": "AB", "max": 10}, {"subject": "Biology", "mark": "AB", "max": 20}], "total": "AB", "overall": "ABSENT", "totalMax": 40}]}}, "regindex": {"AA26PUT09": "MANISHA URS K S", "AA26PUT02": "AINAN GHORI", "AA26PUT16": "SANATH GOWDA S", "AA26PUT20": "VISHNU GOWDA R", "AA26PUT08": "JEEVAN K", "AA26PUT01": "ADEEB KHAN GHORI", "AA26PUT06": "DEEKSHITHA S", "AA26PUT17": "SYEDA YASEERA KHUNDMIRI", "AA26PUT21": "YADU U", "AA26PUT07": "HRUTHIKA S M", "AA26PUT18": "UMAIR HAMZA", "AA26PUT10": "MOHAMMED ARSALAN SIDDIQI", "AA26PUT11": "MUSADIQ MEHDI", "AA26PUT13": "NOORAIN TAJ R", "AA26PUT04": "AZHA TANZEEM", "AA26PUT05": "CHIRANTHAN K", "AA26PUT14": "PAVAN KUMAR G R", "AA26PUT03": "ANIYAH AQSA", "AA26PUT12": "NAGAPRIYA K", "AA26PUT15": "POORNESH GOWDA S P", "AA26PUT19": "VAISHNAVI", "AA26PUV11": "KOKILA V", "AA26PUV15": "MEHEK KHAN", "AA26PUV05": "DHEERAJ S", "AA26PUV19": "PANCHAMI N", "AA26PUV02": "BINDHU SAGAR N K", "AA26PUV07": "GNANESH D M", "AA26PUV08": "HASHRITHA R K", "AA26PUV14": "MEGHANA C", "AA26PUV22": "SHREEKALA B H", "AA26PUV09": "JANHAVI C", "AA26PUV13": "MD HUSSAIN MEHDI", "AA26PUV12": "MANOHAR GOWDA H M", "AA26PUV17": "NAMYATHA G S", "AA26PUV04": "DEEKSHITHA R", "AA26PUV06": "FARHAN KHAN", "AA26PUV16": "MOUNISH GOWDA S A", "AA26PUV18": "NEETHU G", "AA26PUV23": "SYEDA ZAHEDA RIFA", "AA26PUV03": "CHANDRAKALA B", "AA26PUV10": "KHUSHI", "AA26PUV25": "VARSHINI.C.B", "AA26PUV20": "ROHAN", "AA26PUV01": "ATHUFA THASEEN", "AA26PUV24": "SYEDA ZAUFISHAN TASKEEN", "AA26PUV21": "SANA AFSAR"}};
+const qEl=document.getElementById('q');
+const resEl=document.getElementById('result');
+const nfEl=document.getElementById('nf');
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+function clear(){resEl.className='result';resEl.innerHTML='';nfEl.className='notfound';}
+function search(){
+  clear();
+  const raw=qEl.value.trim().toUpperCase();
+  if(!raw){nfEl.textContent='Please enter a register number.';nfEl.className='notfound show';return;}
+  const key=DATA.regindex[raw];
+  if(!key){nfEl.textContent='No student found with register number "'+esc(raw)+'".';nfEl.className='notfound show';return;}
+  render(DATA.students[key]);
+}
+function render(st){
+  const blocks=st.tests.map(t=>{
+    const rows=t.subjects.map(sr=>{
+      const isab=sr.mark==='AB';
+      return '<tr><td class="sub">'+esc(sr.subject)+'</td><td class="num">'+sr.max+'</td>'+
+             '<td class="num mk '+(isab?'ab':'')+'">'+sr.mark+'</td></tr>';
+    }).join('');
+    const showTotal=t.overall!=='PENDING';
+    const badge=t.overall==='SCORED'?'Recorded':t.overall;
+    return '<div class="testblock">'+
+      '<div class="tbhead">'+
+        '<div><span class="tbtitle">'+esc(t.title)+'<span class="sec">'+esc(t.section)+'</span></span>'+
+          '<div class="tbmeta">Reg. No: '+esc(t.reg)+(t.date?' · '+esc(t.date):'')+'</div></div>'+
+        '<div class="badgegroup">'+(t.rank?'<div class="rankchip">Rank '+t.rank+'</div>':'')+'<div class="obadge o-'+t.overall+'">'+badge+'</div></div>'+
+      '</div>'+
+      '<table><thead><tr><th>Subject</th><th class="num">Max</th><th class="num">Marks</th></tr></thead>'+
+        '<tbody>'+rows+'</tbody>'+
+        (showTotal?'<tfoot><tr><td>Total</td><td class="num">'+t.totalMax+'</td><td class="num tot">'+t.total+'</td></tr>'+'</tfoot>':'')+
+      '</table></div>';
+  }).join('');
+  resEl.innerHTML=
+    '<div class="studenthead">'+
+      '<div><div class="sname">'+esc(st.name)+'</div>'+
+        '<div class="smeta">Register No: <span>'+st.regs.map(esc).join(' / ')+'</span><br>'+
+          esc(st.className)+' · '+esc(st.section)+'</div></div>'+
+      '<div class="countbadge">'+st.tests.length+' Test'+(st.tests.length>1?'s':'')+'</div>'+
+    '</div>'+blocks;
+  resEl.className='result show';
+}
+document.getElementById('go').onclick=search;
+qEl.addEventListener('keydown',e=>{if(e.key==='Enter')search();});
+qEl.addEventListener('input',()=>{if(!qEl.value.trim())clear();});
+
+(function(){
+  const el=document.getElementById('hitcount');
+  const NS='myresultsin-apple-pu-d18', KEY='pageviews';
+  function fmt(n){return Number(n).toLocaleString('en-IN');}
+  function localFallback(){
+    let n=0; try{n=parseInt(localStorage.getItem('apv_d18')||'0',10)||0;}catch(e){}
+    n++; try{localStorage.setItem('apv_d18',String(n));}catch(e){}
+    el.textContent=fmt(n);
+  }
+  fetch('https://api.counterapi.dev/v1/'+NS+'/'+KEY+'/up')
+    .then(r=>r.ok?r.json():Promise.reject())
+    .then(d=>{const v=(d&&(d.count!=null?d.count:d.value)); if(v==null)throw 0; el.textContent=fmt(v);})
+    .catch(()=>localFallback());
+})();
+</script>
+</body>
+</html>
